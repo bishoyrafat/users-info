@@ -1,0 +1,20 @@
+.wrapper {
+  margin: 0 300px;
+}
+
+@media (max-width: 970px) {
+  .wrapper {
+    margin: 0 250px;
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    margin: 0 200px;
+  }
+}
+@media (max-width: 700px) {
+  .wrapper {
+    margin: 0 100px;
+  }
+}

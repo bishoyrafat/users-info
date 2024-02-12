@@ -1,0 +1,28 @@
+<ul class="mt-3 " *ngFor="let post of posts; let i = index">
+  <li
+    [class.bg-secondary-subtle]="i % 2 === 0"
+    [class.bg-dark-subtle]="i % 2 !== 0"
+    class="p-3 rounded"
+  >
+  <img class="profileImage" [src]="post.profileImage" [alt]="post.profileImage">
+    <span class="mx-2">{{ selectedUser$?.name }}</span>
+    <p><strong>Post: </strong>{{ post.body | textLimit : 50 }}</p>
+    <img class="img-fluid" [src]="post.image" [alt]="post.image">
+    <small>{{ selectedUser$?.email }}</small>
+    <div class="d-flex justify-content-end">
+      <button *ngIf=" selectedPost !== post.id" class="btn btn-secondary  mt-3" (click)="showComments(post.id)">Show Comments</button>
+      <button *ngIf="comments.length > 0 && selectedPost == post.id" class="btn btn-secondary  mt-3" (click)="hideComments()">Hide Comments</button>
+    </div>
+    <ul *ngIf="selectedPost === post.id">
+      <li *ngFor="let comment of comments"> {{comment.body| textLimit : 50}}
+      <hr></li>
+    </ul>
+    <div class="d-flex justify-content-center">
+      <app-loader *ngIf="isLoading | async"></app-loader>
+    </div>
+  </li>
+</ul>
+<div class="d-flex justify-content-center">
+  <app-loader *ngIf="isLoading | async"></app-loader>
+</div>
+
